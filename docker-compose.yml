@@ -1,0 +1,95 @@
+# version
+version: '3'
+
+services:
+
+  mysqldb:
+    image: mysql
+    container_name: mysqldb
+    ports:
+      - 3407:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=velocity
+    networks:
+      - pollution-app-network
+
+  discovery-service:
+    build: pollution-check-app-backend\eureka-discovery-service\
+    container_name: discovery-service
+    ports:
+      - 8761:8761
+    networks:
+      - pollution-app-network
+  
+  gateway-service:
+    build: pollution-check-app-backend\spring-cloud\
+    container_name: gateway-service
+    ports:
+      - 8080:8080
+    environment:
+      - EUREKA_HOST=host.docker.internal
+    networks:
+      - pollution-app-network
+
+  auth-service:
+    build: pollution-check-app-backend\auth-service\
+    container_name: auth-service
+    ports:
+      - 8100:8100
+    restart: always
+    environment:
+      - MYSQL_HOST=mysqldb 
+      - MYSQL_PORT=3306
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - EUREKA_HOST=host.docker.internal
+    networks:
+      - pollution-app-network
+    links:
+      - mysqldb
+
+
+  watchlist-service:
+    build:  pollution-check-app-backend\watchlist-service\
+    container_name: watchlist-service
+    ports:
+      - 8200:8200
+    restart: always
+    environment:
+      - MYSQL_HOST=mysqldb 
+      - MYSQL_PORT=3306
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - EUREKA_HOST=host.docker.internal
+    networks:
+      - pollution-app-network
+    links:
+      - mysqldb
+    
+  api-service:
+    build: pollution-check-app-backend\api-service\
+    container_name: api-service
+    ports:
+      - 8000:8000
+    environment:
+      - EUREKA_HOST=host.docker.internal
+    networks:
+      - pollution-app-network
+
+  pollution-app-frontend:
+    build: pollution-check-app-frontend\
+    container_name: pollution-app-frontend
+    ports:
+      - 4200:80
+    depends_on:
+      - api-service
+      - auth-service
+      - watchlist-service
+      - gateway-service
+      - discovery-service
+    networks:
+      - pollution-app-network
+
+networks:
+    pollution-app-network:

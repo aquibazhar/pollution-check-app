@@ -1,0 +1,357 @@
+.background-image {
+  position: fixed;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  margin-top: -20px;
+  filter: blur(5px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  top: 0;
+  position: relative;
+  padding: 20px;
+  background-image: linear-gradient(rgb(90 171 218), rgba(255, 255, 255, 70%));
+  height: auto;
+}
+/* SEARCH PART */
+.form-control {
+  border-radius: 0px;
+  width: 100%;
+  margin: 10px 0px;
+}
+.mat-form-field {
+  width: 25%;
+  color: white;
+}
+h2 {
+  text-align: center;
+}
+
+mat-label {
+  columns: black;
+}
+.search-btn {
+  display: block;
+  margin-top: 2px;
+  padding: 6px 20px;
+  font-size: 1.2rem;
+  padding-right: 30px;
+}
+
+mat-icon {
+  font-size: 1.5rem;
+}
+
+.selects {
+  float: left;
+  margin-left: 30px;
+}
+
+.all-selects {
+  margin-left: 40px;
+}
+
+/* SEARCH PART */
+
+/*AQI CARD*/
+.card-container {
+  top: 0;
+  position: relative;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 70%);
+  height: auto;
+}
+
+.aqi-card {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  height: 250px;
+  width: 70%;
+  padding: 5px;
+  position: relative;
+  display: block;
+  border-radius: 5px;
+}
+
+.healthy_card {
+  background-color: #a8e05f;
+}
+.moderate_card {
+  background-color: #fdd64b;
+}
+.sensitive_card {
+  background-color: #ff9b57;
+}
+.unhealthy_card {
+  background-color: #fe6a69;
+}
+
+.healthy_aqi {
+  background-color: #87c13c;
+}
+.moderate_aqi {
+  background-color: #efbe1d;
+}
+.sensitive_aqi {
+  background-color: #f27e2f;
+}
+.unhealthy_aqi {
+  background-color: #e84b50;
+}
+
+.healthy_status {
+  color: #607631;
+}
+.moderate_status {
+  color: #8d6d1d;
+}
+.sensitive_status {
+  color: #974a20;
+}
+.unhealthy_status {
+  color: #942431;
+}
+
+.aqi {
+  margin-top: 25px;
+  color: white;
+  margin-left: 25px;
+  float: left;
+  width: 20%;
+  padding: 20px;
+  height: 80%;
+  clear: both;
+  border-radius: 5px;
+}
+
+.status {
+  margin-left: 10px;
+  padding: 32px;
+  float: left;
+  height: 100%;
+  width: 45%;
+}
+
+.health-image {
+  margin-left: 10px;
+  padding: 0;
+  float: left;
+  height: 100%;
+  width: 30%;
+}
+.health-image img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.aqi-unit {
+  height: 70%;
+  font-size: 20px;
+}
+
+.aqi-value {
+  font-size: 70px;
+}
+
+.status-heading {
+  display: block;
+  height: 30%;
+  font-size: 22px;
+}
+
+.status-health {
+  display: block;
+  height: 55%;
+  font-size: 35px;
+}
+
+.status-city {
+  font-size: 20px;
+  clear: both;
+  height: 15%;
+}
+
+.location-icon {
+  float: left;
+}
+
+.location {
+  float: left;
+  margin-left: 4px;
+  margin-top: 2px;
+}
+
+/*AQI CARD*/
+
+/*WATCHLIST BUTTON*/
+.watchlist {
+  margin-top: 100px;
+}
+.watchlist-btn {
+  display: block;
+  margin-top: 30px;
+  padding: 10px 10px;
+  font-size: 1.1rem;
+  padding-right: 20px;
+  float: left;
+  background-color: white;
+  color: #3f51b5;
+}
+
+.add-icon {
+  margin-bottom: 5px;
+}
+/*WATCHLIST BUTTON*/
+
+/*CLEAR FLOATS*/
+.clear:before,
+.clear:after {
+  content: '';
+  display: table;
+}
+
+.clear:after {
+  clear: both;
+}
+
+.clear {
+  zoom: 1;
+}
+/*CLEAR FLOATS*/
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .selects {
+    float: none;
+    margin-left: 0;
+  }
+
+  .all-selects {
+    margin-left: 0px;
+  }
+
+  .form-control {
+    border-radius: 0px;
+    width: 100%;
+    margin: 0px 0px;
+  }
+  .mat-form-field {
+    width: 100%;
+    color: white;
+  }
+  h2 {
+    text-align: center;
+  }
+
+  mat-label {
+    columns: black;
+  }
+  .search-btn {
+    display: block;
+    margin-top: 2px;
+    padding: 6px 20px;
+    font-size: 1.2rem;
+    padding-right: 30px;
+    width: 100%;
+  }
+
+  mat-icon {
+    font-size: 2rem;
+    margin-bottom: 4px;
+    margin-right: 4px;
+  }
+
+  .health-image {
+    display: none;
+  }
+
+  .aqi {
+    margin-top: 0px;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+    width: 100%;
+    padding: 30px;
+    height: auto;
+    clear: both;
+    border-radius: 5px;
+    padding-bottom: 50px;
+  }
+
+  .aqi-card {
+    width: 90%;
+    margin: 0px;
+
+    height: 300px;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    margin-bottom: 0px;
+  }
+
+  .container {
+    width: 100vw;
+  }
+
+  .aqi-unit {
+    display: block;
+    font-size: 1.5rem;
+    float: left;
+  }
+
+  .aqi-value {
+    display: block;
+    font-size: 2.5rem;
+    float: right;
+  }
+
+  .status {
+    margin-left: 0;
+    padding: 0;
+    float: none;
+    height: auto;
+    width: 100%;
+    text-align: center;
+  }
+
+  .status-heading {
+    display: block;
+    font-size: 1.1rem;
+    height: auto;
+    padding: 20px;
+  }
+
+  .status-health {
+    display: block;
+    font-size: 1.8rem;
+  }
+
+  .status-city {
+    font-size: 1.4rem;
+    clear: both;
+    display: block;
+    padding: 10px;
+    margin-top: 26px;
+  }
+
+  .location {
+    text-align: center;
+  }
+
+  .location-icon {
+    display: none;
+  }
+
+  .watchlist-btn {
+    margin: 0px;
+    width: 100%;
+  }
+}

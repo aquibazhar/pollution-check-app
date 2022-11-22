@@ -1,0 +1,116 @@
+.background-image {
+  position: absolute;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  margin-top: -20px;
+  filter: blur(8px);
+}
+
+.outer {
+  position: relative;
+  padding: 10px;
+  position: relative;
+}
+
+h2 {
+  text-align: center;
+}
+
+.container {
+  position: relative;
+
+  width: 40%;
+  margin: 30px auto;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px;
+  background-color: rgba(255, 255, 255, 70%);
+}
+h2 {
+  text-align: center;
+}
+.profile-heading {
+  font-size: 1.2rem;
+  margin: 0px 0px 20px 10px;
+  text-align: left;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.form-control {
+  border-radius: 0px;
+  width: 100%;
+  margin: 10px 0px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-label-template {
+  font-size: 1.3rem;
+  color: black;
+  opacity: 80%;
+}
+
+.input-field {
+  color: black;
+  opacity: 90%;
+}
+
+.password-button {
+  padding: 10px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .container {
+    width: 80%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px;
+    background-color: rgba(255, 255, 255, 70%);
+  }
+  .form-control {
+    border-radius: 0px;
+    width: 100%;
+    margin: 10px 0px;
+  }
+  .mat-form-field {
+    width: 100%;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  .register-button {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  mat-hint {
+    margin-left: 10px;
+    font-size: 1.2em;
+  }
+
+  .password-button {
+    padding: 8px 0px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+
+  .change-password-button {
+    padding: 8px 0px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+}

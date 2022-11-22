@@ -1,0 +1,159 @@
+<img
+  class="background-image"
+  src="assets\images\profile-background.jpg"
+  alt=""
+/>
+<div class="outer">
+  <h2>Profile Settings</h2>
+  <div class="container">
+    <form>
+      <h2 class="profile-heading" *ngIf="!changePassword">User Details</h2>
+      <div class="form-control" *ngIf="!changePassword">
+        <mat-form-field appearance="outline">
+          <mat-label class="mat-label-template">Username</mat-label>
+          <input
+            class="input-field"
+            [(ngModel)]="model.name"
+            name="userName"
+            matInput
+            type="text"
+            [disabled]="true"
+          />
+          <mat-icon matSuffix>account_circle</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="form-control" *ngIf="!changePassword">
+        <mat-form-field appearance="outline">
+          <mat-label class="mat-label-template">Email</mat-label>
+          <input
+            class="input-field"
+            name="email"
+            matInput
+            type="email"
+            [(ngModel)]="model.email"
+            [disabled]="true"
+          />
+          <mat-icon matSuffix>email_outline</mat-icon>
+        </mat-form-field>
+      </div>
+      <button
+        color="primary"
+        mat-raised-button
+        class="password-button"
+        *ngIf="!changePassword"
+        (click)="changePassword = !changePassword"
+      >
+        <mat-icon>lock</mat-icon>
+        Change Password
+      </button>
+      <button
+        color="primary"
+        mat-raised-button
+        class="password-button"
+        *ngIf="changePassword"
+        (click)="changePassword = !changePassword"
+      >
+        <mat-icon>account_circle</mat-icon>
+        View Profile
+      </button>
+
+      <form
+        [formGroup]="changePasswordForm"
+        *ngIf="changePassword"
+        (ngSubmit)="onChangePassword()"
+      >
+        <div class="form-control">
+          <mat-form-field appearance="outline">
+            <mat-label class="mat-label-pass">Enter Old Password</mat-label>
+            <input
+              matInput
+              formControlName="password"
+              placeholder="Provide your password"
+              appOldPasswordValidator
+              type="password"
+              (change)="onChangeOld()"
+            />
+            <mat-icon matSuffix>lock</mat-icon>
+            <mat-error
+              *ngIf="changePasswordForm.get('password')?.hasError('required')"
+            >
+              This field is mandatory
+            </mat-error>
+            <mat-error
+              *ngIf="(changePasswordForm.controls['password'].touched || changePasswordForm.controls['password'].dirty) && changePasswordForm.controls['password'].errors?.['oldPasswordValid']"
+            >
+              That password was incorrect. Please try again.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-control">
+          <mat-form-field appearance="outline">
+            <mat-label class="mat-label-pass">Enter New Password</mat-label>
+            <input
+              matInput
+              formControlName="newPassword"
+              placeholder="Provide your new password"
+              type="password"
+              (change)="onChange()"
+              appOldConfirmValidator
+              [oldPassword]="oldPasswordTyped"
+            />
+            <mat-icon matSuffix>lock</mat-icon>
+            <mat-error
+              *ngIf="(changePasswordForm.controls['newPassword'].touched || changePasswordForm.controls['newPassword'].dirty) && changePasswordForm.controls['newPassword'].errors?.['required']"
+            >
+              This field is mandatory.
+            </mat-error>
+            <mat-error
+              *ngIf="(changePasswordForm.controls['newPassword'].touched || changePasswordForm.controls['newPassword'].dirty) && changePasswordForm.controls['newPassword'].errors?.['pattern']"
+            >
+              The password should have atleast 8 characters, a number, an
+              uppercase letter, a lowercase letter and a special character.
+            </mat-error>
+            <mat-error
+              *ngIf="(changePasswordForm.controls['newPassword'].touched || changePasswordForm.controls['newPassword'].dirty) && changePasswordForm.controls['newPassword'].errors?.['newPasswordValid']"
+            >
+              The new password cannot be same as the old password, Try another
+              password.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-control">
+          <mat-form-field appearance="outline">
+            <mat-label class="mat-label-pass">Confirm New Password</mat-label>
+            <input
+              matInput
+              formControlName="confirmPassword"
+              placeholder="Confirm your password"
+              type="password"
+              appConfirmPasswordValidator
+              [password]="passwordTyped"
+            />
+            <mat-icon matSuffix>lock</mat-icon>
+            <mat-error
+              *ngIf="
+                changePasswordForm.get('confirmPassword')?.hasError('required')
+              "
+            >
+              This field is mandatory
+            </mat-error>
+            <mat-error
+              *ngIf="(changePasswordForm.controls['confirmPassword'].touched || changePasswordForm.controls['confirmPassword'].dirty) && changePasswordForm.controls['confirmPassword'].errors?.['confirmPasswordValid']"
+            >
+              Passwords didn't match
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <button
+          [disabled]="!changePasswordForm.valid"
+          type="submit"
+          color="primary"
+          mat-raised-button
+          class="change-password-button"
+        >
+          Change Password
+        </button>
+      </form>
+    </form>
+  </div>
+</div>

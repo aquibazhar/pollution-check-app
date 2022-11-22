@@ -1,0 +1,145 @@
+<img
+  class="background-image"
+  src="assets\images\search-background.jpg"
+  alt=""
+/>
+<div class="container">
+  <h2>Search For Air Quality</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div class="clear all-selects">
+      <div class="form-control">
+        <mat-form-field appearance="outline" class="selects">
+          <mat-label>Select Country</mat-label>
+          <mat-select
+            required
+            name="country"
+            [(ngModel)]="selectedCountry"
+            (selectionChange)="onSelectCountry($event)"
+          >
+            <mat-option *ngFor="let t of tempCountries" value="{{ t.country }}">
+              {{ t.country }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-control">
+        <mat-form-field appearance="outline" class="selects">
+          <mat-label>Select State</mat-label>
+          <mat-select
+            required
+            name="state"
+            [(ngModel)]="selectedState"
+            (selectionChange)="onSelectState($event)"
+          >
+            <mat-option *ngFor="let t of tempStates" value="{{ t.state }}">
+              {{ t.state }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-control">
+        <mat-form-field appearance="outline" class="selects">
+          <mat-label>Select City</mat-label>
+          <mat-select required name="city" [(ngModel)]="selectedCity">
+            <mat-option *ngFor="let t of tempCities" value="{{ t.city }}">
+              {{ t.city }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <button
+        type="submit"
+        color="primary"
+        mat-raised-button
+        class="search-btn selects"
+      >
+        <mat-icon>search</mat-icon>
+        <span class="search-button">Search</span>
+      </button>
+    </div>
+  </form>
+</div>
+<form (ngSubmit)="addToWatchList(healthStatus, location, aqiusNearest)">
+  <div
+    class="aqi-card"
+    [ngClass]="{
+      healthy_card: healthStatus === 'Healthy',
+      moderate_card: healthStatus === 'Moderate',
+      sensitive_card: healthStatus === 'Sensitive',
+      unhealthy_card: healthStatus === 'Unhealthy'
+    }"
+  >
+    <div
+      class="aqi"
+      [ngClass]="{
+        healthy_aqi: healthStatus === 'Healthy',
+        moderate_aqi: healthStatus === 'Moderate',
+        sensitive_aqi: healthStatus === 'Sensitive',
+        unhealthy_aqi: healthStatus === 'Unhealthy'
+      }"
+    >
+      <div class="aqi-unit">US AQI</div>
+      <div class="aqi-value">{{ aqiusNearest }}</div>
+    </div>
+
+    <div
+      class="status"
+      [ngClass]="{
+        healthy_status: healthStatus === 'Healthy',
+        moderate_status: healthStatus === 'Moderate',
+        sensitive_status: healthStatus === 'Sensitive',
+        unhealthy_status: healthStatus === 'Unhealthy'
+      }"
+    >
+      <div class="status-heading">
+        {{ cardSubtitle }}
+      </div>
+      <div class="status-health">
+        {{ healthStatus }}
+      </div>
+      <div class="status-city">
+        <mat-icon class="location-icon">my_location</mat-icon>
+        <div class="location">
+          {{ location }}
+        </div>
+      </div>
+    </div>
+    <div class="health-image">
+      <img
+        *ngIf="healthStatus == 'Healthy'"
+        mat-card-image
+        src="assets\images\healthy.png"
+        alt="health photo"
+      />
+      <img
+        *ngIf="healthStatus == 'Moderate'"
+        mat-card-image
+        src="assets\images\moderate.png"
+        alt="health photo"
+      />
+      <img
+        *ngIf="healthStatus == 'Sensitive'"
+        mat-card-image
+        src="assets\images\sensitive.png"
+        alt="health photo"
+      />
+      <img
+        *ngIf="healthStatus == 'Unhealthy'"
+        mat-card-image
+        src="assets\images\unhealthy.png"
+        alt="health photo"
+      />
+    </div>
+    <div class="watchlist">
+      <button
+        type="submit"
+        color="primary"
+        mat-raised-button
+        class="watchlist-btn"
+      >
+        <mat-icon>add</mat-icon>
+        Add To Watchlist
+      </button>
+    </div>
+  </div>
+</form>

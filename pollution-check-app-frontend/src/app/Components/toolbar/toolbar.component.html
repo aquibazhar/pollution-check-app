@@ -1,0 +1,134 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" mode="side">
+    <mat-toolbar>
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        (click)="titleFlag = !titleFlag"
+        class="hide-in-mobile"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Pollution-Check</span>
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/home" matTooltip="Home">
+        <mat-icon mat-list-icon class="">home</mat-icon>
+        <span>Home</span>
+      </a>
+      <a
+        *ngIf="isLoggedIn$ | async as isLogged"
+        mat-list-item
+        matTooltip="profile"
+        routerLink="/accounts/profile"
+      >
+        <mat-icon mat-list-icon class="">account_circle</mat-icon>
+        <span>User Profile</span>
+      </a>
+      <a
+        *ngIf="isLoggedIn$ | async as isLogged"
+        mat-list-item
+        matTooltip="searchAqi"
+        routerLink="search"
+      >
+        <mat-icon mat-list-icon class="">search</mat-icon>
+        <span>Search AQI</span>
+      </a>
+      <a
+        *ngIf="isLoggedIn$ | async as isLogged"
+        mat-list-item
+        matTooltip="watchlist"
+        routerLink="history"
+      >
+        <mat-icon mat-list-icon class="">library_books</mat-icon>
+        <span>Watch List</span>
+      </a>
+      <a
+        *ngIf="!(isLoggedIn$ | async) as isLogged"
+        mat-list-item
+        matTooltip="Login"
+        routerLink="/accounts/login"
+      >
+        <mat-icon mat-list-icon class="">login</mat-icon>
+        <span>Sign In</span>
+      </a>
+      <a
+        *ngIf="isLoggedIn$ | async as isLogged"
+        mat-list-item
+        matTooltip="Logout"
+        (click)="logout()"
+      >
+        <mat-icon mat-list-icon class="">logout</mat-icon>
+        <span>Logout</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        class="hide-in-mobile"
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        (click)="titleFlag = !titleFlag"
+        *ngIf="titleFlag"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span *ngIf="titleFlag" class="app-heading">Pollution-Check</span>
+      <span class="menu-spacer"></span>
+      <button mat-icon-button routerLink="/home" matTooltip="Home">
+        <mat-icon>home</mat-icon>
+      </button>
+      <button
+        *ngIf="!(isLoggedIn$ | async) as isLogged"
+        mat-button
+        routerLink="/accounts/login"
+        matTooltip="login"
+      >
+        <span>Sign In</span>
+      </button>
+      <button
+        *ngIf="isLoggedIn$ | async as isLogged"
+        mat-icon-button
+        routerLink="/history"
+        matTooltip="Watch List"
+      >
+        <mat-icon>library_books</mat-icon>
+      </button>
+      <button
+        *ngIf="isLoggedIn$ | async as isLogged"
+        mat-icon-button
+        routerLink="/search"
+        matTooltip="Search AQI"
+      >
+        <mat-icon>search</mat-icon>
+      </button>
+      <div *ngIf="isLoggedIn$ | async as isLogged">
+        <button
+          mat-button
+          class="user-button"
+          [matMenuTriggerFor]="menu"
+          *ngIf="UserName$ | async as UserName"
+        >
+          <span class="username">Hi, {{ UserName }}</span>
+
+          <mat-icon class="arrow-icon">arrow_drop_down</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button routerLink="/accounts/profile" mat-menu-item>
+            User Profile
+          </button>
+
+          <button (click)="logout()" mat-menu-item>Logout</button>
+        </mat-menu>
+      </div>
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

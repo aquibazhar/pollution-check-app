@@ -1,0 +1,105 @@
+<div class="container">
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <h2>Register</h2>
+    <div class="form-control">
+      <mat-form-field appearance="outline">
+        <mat-label>User Name</mat-label>
+        <input
+          matInput
+          formControlName="name"
+          placeholder="Provide your user name"
+          type="text"
+        />
+        <mat-icon matSuffix>account_circle</mat-icon>
+        <mat-error *ngIf="registerForm.get('name')?.hasError('required')">
+          UserName is required
+        </mat-error>
+        <mat-error *ngIf="registerForm.get('name')?.hasError('minlength')">
+          UserName should be of atleast 6 characters.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-control">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          formControlName="email"
+          matInput
+          placeholder="Provide your email"
+          type="email"
+        />
+        <mat-icon matSuffix>email_outline</mat-icon>
+        <mat-error *ngIf="registerForm.get('email')?.hasError('required')">
+          Email is required
+        </mat-error>
+        <mat-error *ngIf="registerForm.get('email')?.hasError('email')">
+          Email is not Valid
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-control">
+      <mat-form-field appearance="outline" class="mat-field">
+        <mat-label>Password</mat-label>
+        <input
+          name="password"
+          type="password"
+          matInput
+          required
+          formControlName="password"
+          (change)="onChange()"
+        />
+        <mat-icon matSuffix>lock</mat-icon>
+        <mat-error
+          *ngIf="(registerForm.controls['password'].touched || registerForm.controls['password'].dirty) && registerForm.controls['password'].errors?.['required']"
+        >
+          Password is mandatory.
+        </mat-error>
+        <mat-error
+          *ngIf="(registerForm.controls['password'].touched || registerForm.controls['password'].dirty) && registerForm.controls['password'].errors?.['pattern']"
+        >
+          The password should have atleast 8 characters, a number, an uppercase
+          letter, a lowercase letter and a special character.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-control">
+      <mat-form-field appearance="outline" class="mat-field">
+        <mat-label>Confirm Password</mat-label>
+        <input
+          name="password"
+          type="password"
+          matInput
+          required
+          formControlName="confirmPassword"
+          appConfirmPasswordValidator
+          [password]="passwordTyped"
+        />
+        <mat-icon matSuffix>lock</mat-icon>
+        <mat-error
+          *ngIf="(registerForm.controls['confirmPassword'].touched || registerForm.controls['confirmPassword'].dirty) && registerForm.controls['confirmPassword'].errors?.['required']"
+        >
+          Please re-enter your password.
+        </mat-error>
+        <mat-error
+          *ngIf="(registerForm.controls['confirmPassword'].touched || registerForm.controls['confirmPassword'].dirty) && registerForm.controls['confirmPassword'].errors?.['confirmPasswordValid']"
+        >
+          Passwords didn't match
+        </mat-error>
+      </mat-form-field>
+      <mat-hint>
+        Already a Registered User?
+        <a routerLink="/accounts/login">Sign In</a>
+      </mat-hint>
+    </div>
+    <button
+      [disabled]="!registerForm.valid"
+      type="submit"
+      color="primary"
+      mat-raised-button
+      class="register-button"
+    >
+      <mat-icon>save</mat-icon>
+      Create
+    </button>
+  </form>
+</div>

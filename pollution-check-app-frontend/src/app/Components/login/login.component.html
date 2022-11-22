@@ -1,0 +1,65 @@
+<img class="background-image" src="assets\images\login-background.jpg" alt="" />
+<div class="container">
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <h2>User Login</h2>
+    <div class="form-control">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          formControlName="email"
+          matInput
+          placeholder="Provide your email"
+          type="email"
+        />
+        <mat-icon matSuffix>email_outline</mat-icon>
+        <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+          Email is required
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+          Email is not Valid
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-control">
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          formControlName="password"
+          placeholder="Provide your password"
+          type="password"
+        />
+        <mat-icon matSuffix>lock</mat-icon>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+          Password is required
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">
+          Password must be least 5 character in length
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <button
+      class="submit-button"
+      mat-raised-button
+      color="primary"
+      routerLink="/home"
+    >
+      Register
+    </button>
+
+    <mat-hint>
+      New user?
+      <a routerLink="/home">Register</a>
+    </mat-hint>
+    <button
+      [disabled]="!loginForm.valid"
+      type="submit"
+      color="primary"
+      mat-raised-button
+      class="login-button"
+    >
+      <mat-icon>login</mat-icon>
+      Login
+    </button>
+  </form>
+</div>

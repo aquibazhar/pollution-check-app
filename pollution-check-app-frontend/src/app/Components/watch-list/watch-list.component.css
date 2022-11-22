@@ -1,0 +1,202 @@
+.heading {
+  display: block;
+  text-align: center;
+  font: 500 20px/32px Roboto, 'Helvetica Neue', sans-serif;
+  font-size: 25px;
+}
+mat-card-subtitle {
+  color: #fff;
+}
+
+.cards {
+  margin-top: 20px;
+}
+
+.aqi-card {
+  width: 400px;
+  border: 0px solid black;
+  box-shadow: 5px 5px 10px;
+  padding: 30px;
+  float: left;
+  margin: 10px;
+}
+
+mat-card-title {
+  font-size: 25px;
+  color: #fff;
+}
+
+.card-title {
+  clear: both;
+  color: #fff;
+}
+.aqi-location {
+  float: left;
+  display: block;
+  margin-top: 2px;
+  margin-left: 4px;
+  color: #fff;
+  font-size: 1.3rem;
+}
+
+.location-icon {
+  float: left;
+  display: block;
+}
+
+.buttons {
+  clear: both;
+}
+
+.delete-button {
+  float: right;
+}
+
+.container {
+  margin: 20px;
+  position: relative;
+}
+
+mat-card-content {
+  font-size: 18px;
+  color: #fff;
+}
+
+.aqi-index {
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.aqi-status {
+  font-size: 25px;
+  color: #fff;
+}
+
+.background-image {
+  position: absolute;
+  background-position: top;
+  background-attachment: fixed;
+  height: 100%;
+  width: 100%;
+  margin-top: -20px;
+  filter: blur(8px);
+}
+
+.healthy_card {
+  background-color: rgba(135, 193, 60, 90%);
+}
+.moderate_card {
+  background-color: rgba(239, 190, 29, 90%);
+}
+.sensitive_card {
+  background-color: rgba(242, 126, 47, 90%);
+}
+.unhealthy_card {
+  background-color: rgba(232, 75, 80, 90%);
+}
+
+.healthy_aqi {
+  background-color: rgba(135, 193, 60, 70%);
+}
+.moderate_aqi {
+  background-color: rgba(239, 190, 29, 70%);
+}
+.sensitive_aqi {
+  background-color: rgba(242, 126, 47, 70%);
+}
+.unhealthy_aqi {
+  background-color: rgba(232, 75, 80, 70%);
+}
+
+.healthy_status {
+  color: #607631;
+}
+.moderate_status {
+  color: #8d6d1d;
+}
+.sensitive_status {
+  color: #974a20;
+}
+.unhealthy_status {
+  color: #942431;
+}
+
+.clear:before,
+.clear:after {
+  content: '';
+  display: table;
+}
+
+.clear:after {
+  clear: both;
+}
+
+.clear {
+  zoom: 1;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .aqi-card {
+    width: 80%;
+    border: 0px solid black;
+    box-shadow: 5px 5px 10px;
+    padding: 30px;
+    float: none;
+    margin: 10px;
+    margin-bottom: 20px;
+  }
+
+  .aqi-location {
+    float: none;
+    display: block;
+
+    color: #fff;
+    font-size: 1.8rem;
+    line-height: 30px;
+    margin: 0;
+    margin-bottom: 10px;
+  }
+
+  .location-icon {
+    float: none;
+    display: none;
+  }
+
+  .subtitle {
+    text-align: center;
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+  }
+  .background-image {
+    position: absolute;
+    background-position: top;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    margin-top: -20px;
+    filter: blur(8px);
+    display: none;
+  }
+  .container {
+    background-image: linear-gradient(
+      to bottom,
+      rgba(201, 230, 230, 0.903),
+      white
+    );
+    margin: 0px;
+    padding: 20px;
+    height: auto;
+  }
+
+  .aqi-status {
+    font-size: 1.8rem;
+  }
+
+  .heading {
+    display: block;
+    text-align: center;
+    font: 500 20px/32px Roboto, 'Helvetica Neue', sans-serif;
+    font-size: 2.1rem;
+  }
+}

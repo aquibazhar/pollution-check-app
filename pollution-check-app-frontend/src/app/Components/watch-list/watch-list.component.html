@@ -1,0 +1,51 @@
+<img
+  class="background-image"
+  src="assets\images\watchlist-background.jpg"
+  alt=""
+/>
+<div class="container">
+  <h1 class="heading">Watch List</h1>
+  <div class="cards clear">
+    <mat-card
+      [ngClass]="{
+        healthy_card: d.healthStatus === 'Healthy',
+        moderate_card: d.healthStatus === 'Moderate',
+        sensitive_card: d.healthStatus === 'Sensitive',
+        unhealthy_card: d.healthStatus === 'Unhealthy'
+      }"
+      class="aqi-card"
+      *ngFor="let d of data"
+      appZoomHover
+    >
+      <mat-card-subtitle class="subtitle">CITY AQI INDEX</mat-card-subtitle>
+      <mat-card-title class="clear">
+        <mat-icon class="location-icon">my_location</mat-icon>
+        <p class="aqi-location">{{ d.city }}, {{ d.state }}, {{ d.country }}</p>
+      </mat-card-title>
+      <mat-card-content>
+        <div class="aqi-index">US AQI : {{ d.aqiUS }}</div>
+        <div class="aqi-status">{{ d.healthStatus }}</div>
+      </mat-card-content>
+      <mat-card-actions>
+        <div class="buttons">
+          <button
+            (click)="updateRecord(d)"
+            mat-fab
+            color="primary"
+            class="refresh-button"
+          >
+            <mat-icon>refresh</mat-icon>
+          </button>
+          <button
+            (click)="deleteRecord(d.id)"
+            mat-fab
+            color="warn"
+            class="delete-button"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
