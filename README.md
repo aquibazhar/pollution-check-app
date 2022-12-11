@@ -21,6 +21,7 @@ https://user-images.githubusercontent.com/84010175/206903021-f26c8577-38db-4b74-
 - HTML
 - CSS
 - Spring Boot
+- Java
 - MySQL
 - AirVisual API
 
